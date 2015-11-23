@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd     
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<!-- 开启注解驱动 -->
+	<context:component-scan base-package="com.haohui.mail" />
+	
+	<!-- 注意:这里的参数(如用户名、密码)都是针对邮件发送者的 -->
+	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="defaultEncoding" value="UTF-8" />  
+        <property name="host" value="smtp.qq.com" />  
+        <property name="username" value="641715353@qq.com" />  
+        <property name="password" value="xiaolv521" />  
+        <property name="javaMailProperties"> 
+            <props>  
+                <!-- 设置认证开关  -->
+                <prop key="mail.smtp.auth">true</prop>  
+                <!-- 启动调试开关 -->  
+                <prop key="mail.debug">true</prop>  
+                <!-- 设置发送延时 -->
+                <prop key="mail.smtp.timeout">0</prop>
+            </props>  
+        </property>  
+	</bean>
+
+	<!--②异步线程执行器 -->
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="30" />
+	</bean>
+	  <bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage">  
+        <property name="from">  
+            <value>641715353@qq.com</value>  
+        </property>  
+        <!-- 查看SimpleMailMessage源码还可以注入标题,内容等 -->  
+    </bean>  
+    <!-- 申明JavaMailSenderImpl对象 -->  
+    <bean id="mailSender1" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+        <property name="defaultEncoding" value="UTF-8" />  
+        <property name="host" value="smtp.qq.com" />  
+        <property name="username" value="641715353@qq.com" />  
+        <property name="password" value="xiaolv521" />  
+        <property name="javaMailProperties">  
+            <props>  
+                <!-- 设置认证开关 -->  
+                <prop key="mail.smtp.auth">true</prop>  
+                <!-- 启动调试开关 -->  
+                <prop key="mail.debug">true</prop>  
+                <!-- 设置发送延时 -->
+                <prop key="mail.smtp.timeout">0</prop>
+            </props>  
+        </property>  
+    </bean>  
+	
+</beans> 
