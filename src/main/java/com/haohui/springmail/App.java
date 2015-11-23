@@ -16,6 +16,6 @@ public class App
 
         System.out.println("张蕾么?11");
        
->>>>>>> branch 'master' of https://github.com/wangql521/spring-mail.git
+
     }
 }
