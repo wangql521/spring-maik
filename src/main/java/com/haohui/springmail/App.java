@@ -15,6 +15,8 @@ public class App
 		System.out.println( "Hello World! wanql5211" );
 
         System.out.println("张蕾么?11");
+        System.out.println("张蕾么?11");
+        System.out.println("张蕾么?11");
        
 
     }
